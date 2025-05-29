@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Магазин привилегий Minecraft</title>
+<!-- Подключение шрифта Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
+<style>
+  body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #121212;
+    color: #fff;
+  }
+
+  header {
+    background-color: #222;
+    padding: 20px;
+    text-align: center;
+  }
+
+  header h1 {
+    margin: 0;
+    font-size: 2em;
+  }
+
+  nav {
+    margin-top: 10px;
+  }
+
+  nav a {
+    color: #fff;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  nav a:hover {
+    text-decoration: underline;
+  }
+
+  section {
+    padding: 40px 20px;
+    max-width: 1000px;
+    margin: auto;
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #00ffff;
+  }
+
+  .privileges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .privilege-card {
+    background-color: #333;
+    border-radius: 10px;
+    padding: 20px;
+    width: calc(33% - 40px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .privilege-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+  }
+
+  .privilege-card h3 {
+    margin-top: 0;
+    color: #ffcc00;
+}
+
+.price {
+    font-size: 1.5em;
+    margin-top:10px;
+}
+
+.order-form {
+   background-color:#222; 
+   padding:20px; 
+   border-radius:10px; 
+   max-width:500px; 
+   margin:auto; 
+}
+
+.order-form input, 
+.order-form select {
+   width:auto; 
+   padding:10px; 
+   margin-bottom:15px; 
+   border:none; 
+   border-radius:5px; 
+}
+
+.order-form button {
+   background-color:#00ffff; 
+   color:#000; 
+   padding:12px; 
+   border:none; 
+   border-radius:px; 
+   cursor:pointer; 
+   font-weight:bold; 
+}
+
+.order-form button:hover {
+   background-color:#00cccc; 
+}
+
+/* Адаптивность */
+@media(max-width:768px){
+ .privilege-card{
+     width:auto; 
+ }
+}
+</style>
+</head>
+<body>
+
+<header>
+<h1>Магазин привилегий Minecraft</h1>
+<nav>
+<a href="#privileges">Привилегии</a>
+<a href="#order">Купить</a>
+</nav>
+</header>
+
+<section id="privileges">
+<h2>Доступные привилегии</h2>
+<div class="privileges">
+<div class="privilege-card">
+<h3>VIP</h3>
+<p>Получите доступ к эксклюзивным скинам и возможностям.</p>
+<div class="price">100₽</div>
+</div>
+<div class="privilege-card">
+<h3>Premium</h3>
+<p>Все преимущества VIP + возможность телепортации и защиты от гриферства.</p>
+<div class="price">250₽</div>
+</div>
+<div class="privilege-card">
+<h3>Ultimate</h3>
+<p>Все преимущества Premium + уникальные предметы и возможность создавать свои миры.</p>
+<div class="price">500₽</div>
+</div>
+</div>
+</section>
+
+<section id="order">
+<h2>Оформить заказ</h2>
+<form class="order-form" id="orderForm">
+<label for="name">Имя:</label><br/>
+<input type="text" id="name" name="name" required /><br/>
+
+<label for="email">Email:</label><br/>
+<input type="email" id="email" name="email" required /><br/>
+
+<label for="privilege">Выберите привилегию:</label><br/>
+<select id="privilege" name="privilege" required>
+<option value="">--Выберите--</option>
+<option value="VIP">VIP — ₽100</option>
+<option value="Premium">Premium — ₽250</option>
+<option value="Ultimate">Ultimate — ₽500</option>
+</select><br/>
+
+<button type="submit">Отправить заказ</button>
+</form>
+
+<div id="confirmation" style="margin-top:20px;text-align:center;"></div>
+
+<script>
+// Обработка формы
+document.getElementById('orderForm').addEventListener('submit', function(e){
+ e.preventDefault();
+ const name = document.getElementById('name').value.trim();
+ const email = document.getElementById('email').value.trim();
+ const privilege = document.getElementById('privilege').value;
+
+ if(!name || !email || !privilege){
+     alert('Пожалуйста, заполните все поля.');
+     return;
+ }
+ // Можно добавить отправку данных на сервер или имитацию
+ document.getElementById('confirmation').innerHTML = `
+ <h3>Спасибо за заказ!</h3>
+ <p>Имя:${name}</p>
+ <p>Email:${email}</p>
+ <p>Привилегия:${privilege}</p>`;
+ // Очистка формы
+ document.getElementById('orderForm').reset();
+});
+</script>
+
+</section>
+
+<footer style="background:#222;text-align:center;padding:15px;">
+&copy;2024 Ваш магазин Minecraft
+</footer>
+
+</body>
+</html>
